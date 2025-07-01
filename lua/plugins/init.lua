@@ -1,65 +1,57 @@
--- Neovim plugin manager and plugin list
--- Uses 'wbthomason/packer.nvim' for plugin management
+-- Neovim plugin management using lazy.nvim (recommended for modern Neovim)
+-- This file replaces vim-plug and sets up plugins equivalent to those in vimrc
 
--- Auto-install packer.nvim if not present
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd [[packadd packer.nvim]]
+-- Ensure lazy.nvim is installed
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
-  -- Neovim plugins
-  -- Plugin manager
-  use 'wbthomason/packer.nvim'
-
+require('lazy').setup({
   -- LSP and completion
-  use 'neovim/nvim-lspconfig'           -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp'                -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp'            -- LSP source for nvim-cmp
-  use 'L3MON4D3/LuaSnip'                -- Snippet engine
-
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/nvim-cmp' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'L3MON4D3/LuaSnip', tag = "v2.4.0" },
   -- Treesitter for better syntax highlighting
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
-
-  -- Telescope (fuzzy finder)
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  -- UI
-  use 'nvim-tree/nvim-web-devicons'     -- File icons
-  use 'romgrk/barbar.nvim'              -- Bufferline
-  use 'itchyny/lightline.vim'           -- Statusline
-  use 'gruvbox-community/gruvbox'       -- Colorscheme
-  use 'luochen1990/rainbow'             -- Rainbow parentheses
-  use 'mhinz/vim-startify'              -- Start screen
-  use 'ap/vim-css-color'                -- CSS color preview
-
-  -- Git integration
-  use 'lewis6991/gitsigns.nvim'
-
-  -- Commenting
-  use 'numToStr/Comment.nvim'
-
+  { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+  -- Language packs and syntax
+  { 'tpope/vim-commentary', name = 'commentary' },
+  { 'dense-analysis/ale', ft = { 'go', 'ruby', 'python', 'js', 'ts', 'lua' } },
   -- AI
-  use {
-    'github/copilot.vim',
-    run = ':Copilot setup',
-  }
-end)
+  { 'olimorris/codecompanion.nvim', dependencies = {
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-lua/plenary.nvim' },
+    { "MeanderingProgrammer/render-markdown.nvim", -- Enhanced markdown rendering
+      dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+      ft = { "markdown", "codecompanion" } }
+  } },
+  -- Marks
+  -- { 'kshenoy/vim-signature' },
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  -- UI
+  -- { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
+  -- { 'mhinz/vim-startify' },
+  { 'itchyny/lightline.vim' },
+  { 'ellisonleao/gruvbox.nvim' },
+  -- { 'ap/vim-css-color' },
+  { 'github/copilot.vim', build = ':Copilot setup' },
+})
 
 -- Load plugin configs
+
 require('plugins.colorscheme')
 require('plugins.lsp')
 require('plugins.statusline')
 require('plugins.telescope')
 require('plugins.treesitter')
+require('plugins.cmp')
+require('plugins.codecompanion')

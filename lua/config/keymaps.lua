@@ -67,3 +67,6 @@ map('n', '<Leader>1', ':luafile $MYVIMRC<CR>', opts)
 
 -- Unfuck screen (syntax sync)
 map('n', '<Leader>u', ':syntax sync fromstart<CR>:redraw!<CR>', opts)
+
+map('n', '<leader>cc', ':CodeCompanionChat<CR>', { noremap = true, silent = true })
+map('n', '<leader>ca', ':CodeCompanionAgent<CR>', { noremap = true, silent = true })
