@@ -68,5 +68,12 @@ map('n', '<Leader>1', ':luafile $MYVIMRC<CR>', opts)
 -- Unfuck screen (syntax sync)
 map('n', '<Leader>u', ':syntax sync fromstart<CR>:redraw!<CR>', opts)
 
+-- CodeCompanion commands
 map('n', '<leader>cc', ':CodeCompanionChat<CR>', { noremap = true, silent = true })
 map('n', '<leader>ca', ':CodeCompanionAgent<CR>', { noremap = true, silent = true })
+
+-- Show diagnostics
+map('n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', opts)
+
+-- LSP go-to-definition
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)

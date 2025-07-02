@@ -27,6 +27,7 @@ require('lazy').setup({
   { 'tpope/vim-commentary', name = 'commentary' },
   { 'dense-analysis/ale', ft = { 'go', 'ruby', 'python', 'js', 'ts', 'lua' } },
   -- AI
+  { 'github/copilot.vim', build = ':Copilot setup' },
   { 'olimorris/codecompanion.nvim', dependencies = {
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     { 'nvim-lua/plenary.nvim' },
@@ -40,10 +41,9 @@ require('lazy').setup({
   -- UI
   -- { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
   -- { 'mhinz/vim-startify' },
-  { 'itchyny/lightline.vim' },
   { 'ellisonleao/gruvbox.nvim' },
+  { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
   -- { 'ap/vim-css-color' },
-  { 'github/copilot.vim', build = ':Copilot setup' },
 })
 
 -- Load plugin configs
