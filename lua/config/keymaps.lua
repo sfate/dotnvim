@@ -63,7 +63,7 @@ map('n', '<Leader>*', ':Telescope grep_string<CR>', opts)
 map('n', '<Leader>m', ':Telescope marks<CR>', opts)
 
 -- Reload config
-map('n', '<Leader>1', ':luafile $MYVIMRC<CR>', opts)
+map('n', '<Leader>1', ':luafile $MYVIMRC<CR>:Lazy sync<CR>', opts)
 
 -- Unfuck screen (syntax sync)
 map('n', '<Leader>u', ':syntax sync fromstart<CR>:redraw!<CR>', opts)
