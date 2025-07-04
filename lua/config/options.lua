@@ -41,6 +41,9 @@ opt.errorbells = false
 opt.visualbell = true
 opt.autoread = true
 
+-- Inline messages
+vim.diagnostic.config({ virtual_text = true })
+
 -- Indentation
 opt.autoindent = true
 opt.copyindent = true
@@ -56,9 +59,6 @@ opt.hlsearch = true
 opt.incsearch = true
 opt.shortmess:remove('S')
 opt.path:append('**')
-
--- Leader
-vim.g.mapleader = ' '
 
 -- Colorscheme
 opt.background = 'dark'

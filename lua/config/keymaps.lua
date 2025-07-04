@@ -48,10 +48,10 @@ map('v', '<Leader>y', '"+y', opts)
 map('n', '<Leader>p', '"+p', opts)
 
 -- Unhighlight search
-map('n', '<Leader>/', ':noh<CR>', opts)
+map('n', '<Leader>/', ':call clearmatches()<CR>', opts)
 
 -- Highlight word under cursor
-map('n', '<Leader>h', ':let @/ = "\\<".expand("<cword>")."\\>"|set hlsearch<CR>', opts)
+map('n', '<leader>h', [[:call clearmatches() | call matchadd('Search', '\<' . escape(expand('<cword>'), '\') . '\>')<CR>]], opts)
 
 -- Buffer and file navigation (FZF, Telescope, etc. in plugins)
 map('n', '<Leader>b', ':Telescope buffers<CR>', opts)
@@ -77,3 +77,5 @@ map('n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', opts)
 
 -- LSP go-to-definition
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', '<leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+map('n', '<leader>dv', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
