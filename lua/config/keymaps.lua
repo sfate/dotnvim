@@ -48,19 +48,23 @@ map('v', '<Leader>y', '"+y', opts)
 map('n', '<Leader>p', '"+p', opts)
 
 -- Unhighlight search
-map('n', '<Leader>/', ':call clearmatches()<CR>', opts)
+map('n', '<Leader>/', ':call clearmatches() | noh<CR>', opts)
 
 -- Highlight word under cursor
-map('n', '<leader>h', [[:call clearmatches() | call matchadd('Search', '\<' . escape(expand('<cword>'), '\') . '\>')<CR>]], opts)
+map('n', '<Leader>h', [[:call clearmatches() | noh | call matchadd('Search', '\<' . escape(expand('<cword>'), '\') . '\>')<CR>]], opts)
 
--- Buffer and file navigation (FZF, Telescope, etc. in plugins)
-map('n', '<Leader>b', ':Telescope buffers<CR>', opts)
-map('n', '<Leader>t', ':Telescope git_files<CR>', opts)
-map('n', '<Leader><Leader>', ':Telescope find_files<CR>', opts)
-map('n', '<Leader>s', ':Telescope git_status<CR>', opts)
-map('n', '<Leader>f', ':Telescope live_grep<CR>', opts)
-map('n', '<Leader>*', ':Telescope grep_string<CR>', opts)
-map('n', '<Leader>m', ':Telescope marks<CR>', opts)
+-- Buffer and file navigation (FZF)
+map('n', '<Leader>b', ':FzfLua buffers<CR>', opts)
+map('n', '<Leader>t', ':FzfLua git_files<CR>', opts)
+map('n', '<Leader><Leader>', ':FzfLua files<CR>', opts)
+map('n', '<Leader>s', ':FzfLua git_status<CR>', opts)
+map('n', '<Leader>f', ':FzfLua live_grep_glob<CR>', opts)
+map('n', '<Leader>*', ':FzfLua grep_cword<CR>', opts)
+-- Show diagnostics
+map('n', '<Leader>dd', ':FzfLua diagnostics_document<CR>', opts)
+map('n', '<Leader>dw', ':FzfLua diagnostics_workspace<CR>', opts)
+-- Git blame
+map('n', '<Leader>g', ':Gitsigns blame<CR>', opts)
 
 -- Reload config
 map('n', '<Leader>1', ':luafile $MYVIMRC<CR>:Lazy sync<CR>', opts)
@@ -68,14 +72,10 @@ map('n', '<Leader>1', ':luafile $MYVIMRC<CR>:Lazy sync<CR>', opts)
 -- Unfuck screen (syntax sync)
 map('n', '<Leader>u', ':syntax sync fromstart<CR>:redraw!<CR>', opts)
 
--- CodeCompanion commands
-map('n', '<leader>cc', ':CodeCompanionChat<CR>', { noremap = true, silent = true })
-map('n', '<leader>ca', ':CodeCompanionAgent<CR>', { noremap = true, silent = true })
-
--- Show diagnostics
-map('n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', opts)
+-- AI Chat
+map('n', '<Leader>c', ':AvanteChat<CR>', opts)
 
 -- LSP go-to-definition
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-map('n', '<leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
-map('n', '<leader>dv', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)
+map('n', '<Leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+map('n', '<Leader>dv', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', opts)

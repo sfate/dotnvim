@@ -26,24 +26,54 @@ require('lazy').setup({
   -- Language packs and syntax
   { 'tpope/vim-commentary', name = 'commentary' },
   { 'dense-analysis/ale', ft = { 'go', 'ruby', 'python', 'js', 'ts', 'lua' } },
-  -- AI
-  { 'github/copilot.vim', build = ':Copilot setup' },
-  { 'olimorris/codecompanion.nvim', dependencies = {
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    { 'nvim-lua/plenary.nvim' },
-    { "MeanderingProgrammer/render-markdown.nvim", -- Enhanced markdown rendering
-      dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-      ft = { "markdown", "codecompanion" } }
-  } },
-  -- Marks
-  -- { 'kshenoy/vim-signature' },
-  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  -- Navigation
+  { 'ibhagwan/fzf-lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
   -- UI
-  -- { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
-  -- { 'mhinz/vim-startify' },
   { 'ellisonleao/gruvbox.nvim' },
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
-  -- { 'ap/vim-css-color' },
+  { "lewis6991/gitsigns.nvim" },
+  -- AI
+  { 'github/copilot.vim', build = ':Copilot setup' },
+  {
+    "yetone/avante.nvim",
+    build = function()
+      return "make"
+    end,
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      provider = "copilot",
+      auto_suggestions_provider = "copilot",
+      providers = {
+        copilot = {
+          model = "gpt-4.1",
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "stevearc/dressing.nvim", -- for input provider dressing
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  }
 })
 
 -- Load plugin configs
@@ -51,7 +81,7 @@ require('lazy').setup({
 require('plugins.colorscheme')
 require('plugins.lsp')
 require('plugins.statusline')
-require('plugins.telescope')
 require('plugins.treesitter')
 require('plugins.cmp')
-require('plugins.codecompanion')
+require('plugins.avante')
+require('plugins.fzf')
