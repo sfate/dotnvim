@@ -47,6 +47,7 @@ require('lazy').setup({
     ---@module 'avante'
     ---@type avante.Config
     opts = {
+      hints = { enabled = false }, -- Disable hints
       provider = "copilot",
       auto_suggestions_provider = "copilot",
       providers = {
