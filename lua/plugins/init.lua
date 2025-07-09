@@ -28,9 +28,12 @@ require('lazy').setup({
   { 'dense-analysis/ale', ft = { 'go', 'ruby', 'python', 'js', 'ts', 'lua' } },
   -- Navigation
   { 'ibhagwan/fzf-lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
-  -- UI
+  -- Colors
   { 'ellisonleao/gruvbox.nvim' },
+  { 'rebelot/kanagawa.nvim' },
+  -- Statusline
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI
   { 'github/copilot.vim', build = ':Copilot setup' },
