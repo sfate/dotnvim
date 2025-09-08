@@ -58,7 +58,7 @@ map('n', '<Leader>b', ':FzfLua buffers<CR>', opts)
 map('n', '<Leader>t', ':FzfLua git_files<CR>', opts)
 map('n', '<Leader><Leader>', ':FzfLua files<CR>', opts)
 map('n', '<Leader>s', ':FzfLua git_status<CR>', opts)
-map('n', '<Leader>f', ':FzfLua live_grep_glob<CR>', opts)
+map('n', '<Leader>f', ':FzfLua live_grep<CR>', opts)
 map('n', '<Leader>*', ':FzfLua grep_cword<CR>', opts)
 -- Show diagnostics
 map('n', '<Leader>dd', ':FzfLua diagnostics_document<CR>', opts)

@@ -31,8 +31,19 @@ require('lazy').setup({
   -- Colors
   { 'ellisonleao/gruvbox.nvim' },
   { 'rebelot/kanagawa.nvim' },
-  -- Statusline
+  -- UI
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      dim = {
+        -- your dim configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    }
+  },
   -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI
