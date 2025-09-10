@@ -3,6 +3,16 @@ vim.api.nvim_create_autocmd("VimResized", {
   pattern = '*',
   command = 'lua require("fzf-lua").redraw()'
 })
+vim.api.nvim_create_autocmd("FocusLost", {
+  pattern = "*",
+  callback = function()
+    local ok, fzf = pcall(require, "fzf-lua")
+    if ok and fzf then
+      fzf.stop() -- Safely stops any active fzf-lua session
+    end
+  end
+})
+
 
 require('fzf-lua').setup({
   keymap = {
