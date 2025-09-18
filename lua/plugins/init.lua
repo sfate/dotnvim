@@ -25,7 +25,6 @@ require('lazy').setup({
   { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
   -- Language packs and syntax
   { 'tpope/vim-commentary', name = 'commentary' },
-  { 'dense-analysis/ale', ft = { 'go', 'ruby', 'python', 'js', 'ts', 'lua' } },
   -- Navigation
   { 'ibhagwan/fzf-lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
   -- Colors
@@ -91,8 +90,8 @@ require('lazy').setup({
 
 -- Load plugin configs
 
-require('plugins.colorscheme')
 require('plugins.lsp')
+require('plugins.colorscheme')
 require('plugins.statusline')
 require('plugins.treesitter')
 require('plugins.cmp')
