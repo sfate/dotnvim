@@ -7,6 +7,16 @@ vim.lsp.config.gopls = {
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_markers = { "go.work", "go.mod", ".git" },
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
 }
 -- Lua
 vim.lsp.config.lua_ls = {
@@ -66,4 +76,16 @@ vim.lsp.enable({
   "lua_ls",
   "eslint",
   "solargraph",
+})
+
+-- Create an autocmd group for Go formatting
+vim.api.nvim_create_augroup('GoFormat', { clear = true })
+
+-- Auto format on save using LSP
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = 'GoFormat',
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.format({ timeout_ms = 1000 })
+  end,
 })
