@@ -23,11 +23,12 @@
 require('fzf-lua').setup({
   actions = {
     files = {
-      ["ctrl-q"] = function(selected, opts)
-        -- Open new tab first
+      ["default"] = function(selected, opts)
+        -- Use the original default file open action
+        require('fzf-lua').actions.file_edit(selected, opts)
+      end,
+      ["ctrl-t"] = function(selected, opts)
         vim.cmd('tabnew')
-
-        -- Then use default quickfix action
         require('fzf-lua').actions.file_sel_to_qf(selected, opts)
         vim.cmd('copen')
       end,
