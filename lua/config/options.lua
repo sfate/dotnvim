@@ -69,9 +69,6 @@ g.rainbow_active = 1
 -- 'noshowmode' is not a valid option in Neovim Lua API; remove or use 'opt.showmode = false' if needed
 opt.showmode = false
 
--- ALE/linters (if using ALE via nvim-lint or null-ls, configure in plugins)
--- See plugins/lsp.lua for LSP and linting setup
-
 -- Netrw (if using netrw)
 g.netrw_altv = 1
 g.netrw_fastbrowse = 0
