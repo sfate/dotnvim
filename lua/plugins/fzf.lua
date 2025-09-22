@@ -21,11 +21,16 @@
 -- })
 
 require('fzf-lua').setup({
-  keymap = {
-    fzf = {
-      true,
-      -- Use <c-q> to select all items and add them to the quickfix list
-      ["ctrl-q"] = "select-all+accept",
+  actions = {
+    files = {
+      ["ctrl-q"] = function(selected, opts)
+        -- Open new tab first
+        vim.cmd('tabnew')
+
+        -- Then use default quickfix action
+        require('fzf-lua').actions.file_sel_to_qf(selected, opts)
+        vim.cmd('copen')
+      end,
     },
   },
 })
