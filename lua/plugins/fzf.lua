@@ -23,15 +23,15 @@
 require('fzf-lua').setup({
   actions = {
     files = {
-      ["default"] = function(selected, opts)
-        -- Use the original default file open action
-        require('fzf-lua').actions.file_edit(selected, opts)
-      end,
-      ["ctrl-t"] = function(selected, opts)
-        vim.cmd('tabnew')
-        require('fzf-lua').actions.file_sel_to_qf(selected, opts)
-        vim.cmd('copen')
-      end,
+      ["enter"]  = FzfLua.actions.file_edit_or_qf,
+      ["ctrl-s"] = FzfLua.actions.file_split,
+      ["ctrl-v"] = FzfLua.actions.file_vsplit,
+      ["ctrl-t"] = FzfLua.actions.file_tabedit,
+      ["alt-q"]  = FzfLua.actions.file_sel_to_qf,
+      ["alt-Q"]  = FzfLua.actions.file_sel_to_ll,
+      ["alt-i"]  = FzfLua.actions.toggle_ignore,
+      ["alt-h"]  = FzfLua.actions.toggle_hidden,
+      ["alt-f"]  = FzfLua.actions.toggle_follow,
     },
   },
 })

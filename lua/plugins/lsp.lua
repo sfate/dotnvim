@@ -14,7 +14,7 @@ vim.lsp.config.gopls = {
         shadow = true,
       },
       staticcheck = true,
-      gofumpt = true,
+      gofumpt = false,
     },
   },
 }
