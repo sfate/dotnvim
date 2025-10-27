@@ -29,9 +29,9 @@ require('lazy').setup({
   { 'ibhagwan/fzf-lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
   -- Colors
   { 'ellisonleao/gruvbox.nvim' },
-  { 'rebelot/kanagawa.nvim' },
   -- UI
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  { "hat0uma/csvview.nvim" },
   -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI
