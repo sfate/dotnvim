@@ -72,9 +72,6 @@ map('n', '<Leader>1', ':luafile $MYVIMRC<CR>:Lazy sync<CR>', opts)
 -- Unfuck screen (syntax sync)
 map('n', '<Leader>u', ':syntax sync fromstart<CR>:redraw!<CR>', opts)
 
--- AI Chat
--- map('n', '<Leader>c', ':AvanteChat<CR>', opts)
-
 -- LSP go-to-definition
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 map('n', '<Leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)

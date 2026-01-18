@@ -35,47 +35,7 @@ require('lazy').setup({
   -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI
-  { 'github/copilot.vim', build = ':Copilot setup' },
-  {
-    "yetone/avante.nvim",
-    build = "make",
-    event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
-    instructions_file = ".github/copilot-instructions.md",
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      hints = { enabled = false }, -- Disable hints
-      inline = { enabled = false },
-      selection = {
-        enabled = false, -- Disable selection hints!!!
-        hint_display = "delayed",
-      },
-      behaviour = {
-        auto_suggestions = false, -- Disable auto-suggestions
-        auto_set_highlight_group = true, -- Disable highlight hints
-        auto_set_keymaps = true, -- Optional: disable auto keymaps
-        auto_approve_tool_permissions = true, -- Optional: disable tool permission prompts
-      },
-      provider = "copilot",
-      auto_suggestions_provider = "copilot",
-      providers = {
-        copilot = {
-          model = "gpt-4.1",
-        },
-      },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "echasnovski/mini.pick", -- for file_selector provider mini.pick
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      -- "stevearc/dressing.nvim", -- for input provider dressing
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-    },
-  }
+  { 'github/copilot.vim', build = ':Copilot setup' }
 })
 
 -- Load plugin configs
@@ -85,5 +45,4 @@ require('plugins.colorscheme')
 require('plugins.statusline')
 require('plugins.treesitter')
 require('plugins.cmp')
-require('plugins.avante')
 require('plugins.fzf')
