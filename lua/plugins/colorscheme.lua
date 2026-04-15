@@ -22,12 +22,6 @@ function set_theme_from_system()
     vim.o.background = "light"
   end
   vim.cmd("colorscheme gruvbox")
-
-  vim.cmd [[
-    if exists(':LightlineReload')
-      :LightlineReload
-    endif
-  ]]
 end
 
 -- Call on startup

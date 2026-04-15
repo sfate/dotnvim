@@ -1,3 +1,22 @@
+local winbar_active = { bg = '#3c3836' }
+local winbar_inactive = { bg = '#282828' }
+
+local winbar_filename_symbols = {
+  modified = ' [+]',
+  readonly = ' [-]',
+  unnamed = '[No Name]',
+}
+
+local function apply_winbar_highlights()
+  vim.api.nvim_set_hl(0, 'WinBar', winbar_active)
+  vim.api.nvim_set_hl(0, 'WinBarNC', winbar_inactive)
+end
+
+apply_winbar_highlights()
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = apply_winbar_highlights,
+})
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -10,7 +29,7 @@ require('lualine').setup {
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -19,9 +38,8 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    -- lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_b = {'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {},
     lualine_x = {'encoding', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -29,13 +47,51 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'filename',
+        path = 0,
+        symbols = {
+          modified = ' [+]',
+          readonly = ' [-]',
+          unnamed = '[No Name]',
+        },
+      },
+    },
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
-  inactive_winbar = {},
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+        color = winbar_active,
+        symbols = winbar_filename_symbols,
+      },
+    },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+        color = winbar_inactive,
+        symbols = winbar_filename_symbols,
+      },
+    },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   extensions = {}
 }

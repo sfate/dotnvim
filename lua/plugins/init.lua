@@ -3,7 +3,7 @@
 
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -17,21 +17,34 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- LSP and completion
-  { 'neovim/nvim-lspconfig' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'L3MON4D3/LuaSnip', tag = "v2.4.0" },
+  { 'neovim/nvim-lspconfig', lazy = false },
+  {
+    'hrsh7th/nvim-cmp',
+    lazy = false,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      { 'L3MON4D3/LuaSnip', tag = "v2.4.0" },
+    },
+  },
   -- Treesitter for better syntax highlighting
-  { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', lazy = false },
   -- Language packs and syntax
   { 'tpope/vim-commentary', name = 'commentary' },
   { "allaman/tf.nvim", opts = {}, ft = "terraform" },
   -- Navigation
-  { 'ibhagwan/fzf-lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
+  {
+    'ibhagwan/fzf-lua',
+    cmd = 'FzfLua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
   -- Colors
-  { 'ellisonleao/gruvbox.nvim' },
+  { 'ellisonleao/gruvbox.nvim', lazy = false, priority = 1000 },
   -- UI
-  { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  {
+    'nvim-lualine/lualine.nvim',
+    lazy = false,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
   { "hat0uma/csvview.nvim" },
   -- Git
   { "lewis6991/gitsigns.nvim" },
@@ -40,7 +53,6 @@ require('lazy').setup({
 })
 
 -- Load plugin configs
-
 require('plugins.lsp')
 require('plugins.colorscheme')
 require('plugins.statusline')

@@ -20,18 +20,24 @@
 --   end
 -- })
 
-require('fzf-lua').setup({
+if #vim.api.nvim_list_uis() == 0 then
+  return
+end
+
+local fzf = require('fzf-lua')
+
+fzf.setup({
   actions = {
     files = {
-      ["enter"]  = FzfLua.actions.file_edit_or_qf,
-      ["ctrl-s"] = FzfLua.actions.file_split,
-      ["ctrl-v"] = FzfLua.actions.file_vsplit,
-      ["ctrl-t"] = FzfLua.actions.file_tabedit,
-      ["alt-q"]  = FzfLua.actions.file_sel_to_qf,
-      ["alt-Q"]  = FzfLua.actions.file_sel_to_ll,
-      ["alt-i"]  = FzfLua.actions.toggle_ignore,
-      ["alt-h"]  = FzfLua.actions.toggle_hidden,
-      ["alt-f"]  = FzfLua.actions.toggle_follow,
+      ["enter"]  = fzf.actions.file_edit_or_qf,
+      ["ctrl-s"] = fzf.actions.file_split,
+      ["ctrl-v"] = fzf.actions.file_vsplit,
+      ["ctrl-t"] = fzf.actions.file_tabedit,
+      ["alt-q"]  = fzf.actions.file_sel_to_qf,
+      ["alt-Q"]  = fzf.actions.file_sel_to_ll,
+      ["alt-i"]  = fzf.actions.toggle_ignore,
+      ["alt-h"]  = fzf.actions.toggle_hidden,
+      ["alt-f"]  = fzf.actions.toggle_follow,
     },
   },
 })

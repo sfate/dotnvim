@@ -29,6 +29,10 @@ api.nvim_create_autocmd('FileType', {
 api.nvim_create_autocmd('VimEnter', {
   nested = true,
   callback = function()
+    if #api.nvim_list_uis() == 0 then
+      return
+    end
+
     if vim.fn.argc() == 0 then
       vim.cmd('Explore')
       return
