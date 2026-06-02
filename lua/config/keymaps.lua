@@ -44,8 +44,9 @@ map('c', '<C-k>', '<Up>', opts)
 map('c', '<C-l>', '<Right>', opts)
 
 -- System clipboard copy/paste
-map('v', '<Leader>y', '"+y', vim.tbl_extend('force', opts, { desc = 'Yank to system clipboard' }))
-map('n', '<Leader>p', '"+p', vim.tbl_extend('force', opts, { desc = 'Paste from system clipboard' }))
+map({ 'n', 'x' }, '<Leader>y', '"+y', vim.tbl_extend('force', opts, { desc = 'Yank to system clipboard' }))
+map({ 'n', 'x' }, '<Leader>p', '"+p', vim.tbl_extend('force', opts, { desc = 'Paste from system clipboard after cursor' }))
+map({ 'n', 'x' }, '<Leader>P', '"+P', vim.tbl_extend('force', opts, { desc = 'Paste from system clipboard before cursor' }))
 
 -- Unhighlight search
 map('n', '<Leader>/', '<cmd>call clearmatches() | noh<CR>', vim.tbl_extend('force', opts, { desc = 'Clear search highlights' }))
