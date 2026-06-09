@@ -49,7 +49,7 @@ require('lazy').setup({
   -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI
-  { 'github/copilot.vim', build = ':Copilot setup' }
+  -- { 'github/copilot.vim', build = ':Copilot setup' }
 })
 
 -- Load plugin configs
