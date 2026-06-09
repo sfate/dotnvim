@@ -45,6 +45,7 @@ require('lazy').setup({
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
+  { 'TaDaa/vimade', lazy = false },
   { "hat0uma/csvview.nvim" },
   -- Git
   { "lewis6991/gitsigns.nvim" },
@@ -59,3 +60,4 @@ require('plugins.statusline')
 require('plugins.treesitter')
 require('plugins.cmp')
 require('plugins.fzf')
+require('plugins.vimade')
