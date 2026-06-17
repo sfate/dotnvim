@@ -25,10 +25,11 @@ cmp.setup({
     end, { 'i', 'c' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       -- Accept Copilot suggestion if visible
-      local copilot_keys = vim.fn['copilot#Accept']()
-      if copilot_keys ~= '' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-      elseif cmp.visible() then
+      -- local copilot_keys = vim.fn['copilot#Accept']()
+      -- if copilot_keys ~= '' then
+      --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      -- elseif cmp.visible() then
+      if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()

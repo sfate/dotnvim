@@ -1,5 +1,5 @@
-local winbar_active = { bg = '#3c3836' }
-local winbar_inactive = { bg = '#282828' }
+-- local winbar_active = { bg = '#3c3836' }
+-- local winbar_inactive = { bg = '#282828' }
 
 local winbar_filename_symbols = {
   modified = ' [+]',
@@ -7,15 +7,15 @@ local winbar_filename_symbols = {
   unnamed = '[No Name]',
 }
 
-local function apply_winbar_highlights()
-  vim.api.nvim_set_hl(0, 'WinBar', winbar_active)
-  vim.api.nvim_set_hl(0, 'WinBarNC', winbar_inactive)
-end
+-- local function apply_winbar_highlights()
+--   vim.api.nvim_set_hl(0, 'WinBar', winbar_active)
+--   vim.api.nvim_set_hl(0, 'WinBarNC', winbar_inactive)
+-- end
 
-apply_winbar_highlights()
-vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = apply_winbar_highlights,
-})
+-- apply_winbar_highlights()
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   callback = apply_winbar_highlights,
+-- })
 
 require('lualine').setup {
   options = {
@@ -70,7 +70,7 @@ require('lualine').setup {
       {
         'filename',
         path = 1,
-        color = winbar_active,
+        -- color = winbar_active,
         symbols = winbar_filename_symbols,
       },
     },
@@ -85,7 +85,7 @@ require('lualine').setup {
       {
         'filename',
         path = 1,
-        color = winbar_inactive,
+        -- color = winbar_inactive,
         symbols = winbar_filename_symbols,
       },
     },
