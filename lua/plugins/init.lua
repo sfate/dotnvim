@@ -46,7 +46,13 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   { 'TaDaa/vimade', lazy = false },
-  { "hat0uma/csvview.nvim" },
+  {
+    "hat0uma/csvview.nvim",
+    opts = {
+      parser = { delimiter = { ft = {} } },
+      view = { display_mode = 'border' },
+    },
+  },
   -- Git
   { "lewis6991/gitsigns.nvim" },
   -- AI

@@ -79,4 +79,4 @@ map('n', '<Leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', vim.
 map('n', '<Leader>dv', '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>', vim.tbl_extend('force', opts, { desc = 'Go to definition in vertical split' }))
 
 -- CSV View toggle
-map('n', '<Leader>c', '<cmd>CsvViewToggle delimiter=, display_mode=border header_lnum=1<CR>', vim.tbl_extend('force', opts, { desc = 'Toggle CSV view' }))
+map('n', '<Leader>c', '<cmd>CsvViewToggle<CR>', vim.tbl_extend('force', opts, { desc = 'Toggle CSV view (auto-detect format)' }))
