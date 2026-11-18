@@ -26,6 +26,10 @@ map('n', '<End>', '<NOP>', opts)
 map('i', 'jj', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
 map('i', 'jk', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
 map('i', 'kk', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
+-- Same keys in the Ukrainian layout; langmap does not apply in insert mode
+map('i', 'оо', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
+map('i', 'ол', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
+map('i', 'лл', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
 
 -- Move by display lines
 map('n', 'j', 'gj', opts)

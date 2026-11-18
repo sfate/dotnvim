@@ -54,6 +54,13 @@ opt.shiftround = true
 opt.expandtab = true
 opt.backspace = { 'indent', 'eol', 'start' }
 
+-- Ukrainian-PC layout keys act as QWERTY in normal, visual and operator-pending modes
+opt.langmap = {
+  [[йцукенгшщзхїфівапролджєячсмитьбю;qwertyuiop[]asdfghjkl\;'zxcvbnm\,.]],
+  [[ЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЄЯЧСМИТЬБЮ;QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>]],
+  [[№#]],
+}
+
 -- Search
 opt.hlsearch = true
 opt.incsearch = true
